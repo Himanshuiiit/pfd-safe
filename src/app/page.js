@@ -1,9 +1,15 @@
 import PDFComponent from "../components/PDFComponent";
 
-export default function Home() {
+export default async function Home() {
+  const { encryptedPassword } = await (
+    await fetch("http://localhost:3000/password", {
+      method: "GET",
+      cache: "no-cache",
+    })
+  ).json();
   return (
     <main className="flex flex-col justify-center">
-      <PDFComponent password={process.env.NEXT_PUBLIC_PASSWORD}/>
+      <PDFComponent password={encryptedPassword} />
     </main>
   );
 }
