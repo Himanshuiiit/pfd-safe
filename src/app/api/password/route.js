@@ -1,4 +1,4 @@
-import { decryptPassword, encryptedPassword } from "@/utils/encrypt";
+import { encryptedPassword } from "@/utils/encrypt";
 import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
