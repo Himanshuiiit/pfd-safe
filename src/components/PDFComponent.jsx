@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 
 pdfjs.GlobalWorkerOptions.workerSrc = "/pdf.worker.min.js";
 
-const PDFComponent = () => {
+const PDFComponent = ({ password }) => {
   useEffect(() => {
     document.addEventListener("keydown", function (e) {
       if (
@@ -14,7 +14,7 @@ const PDFComponent = () => {
         e.preventDefault();
       }
     });
-  },[]);
+  }, []);
 
   const [numPages, setNumPages] = useState();
   const [pageNumber, setPageNumber] = useState(1);
@@ -43,7 +43,7 @@ const PDFComponent = () => {
       <Document
         file={"/assets/react_protected.pdf"}
         onLoadSuccess={onDocumentLoadSuccess}
-        onPassword={(callback) => callback(process.env.NEXT_PUBLIC_PASSWORD)}
+        onPassword={(callback) => callback(password)}
       >
         {Array.apply(null, Array(numPages))
           .map((x, i) => i + 1)
